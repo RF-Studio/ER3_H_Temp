@@ -13,7 +13,16 @@
 //------------------------------------------------------------------------------
 void __attribute__((interrupt, auto_psv)) _U1RXInterrupt(void)
 {
-    printf("recieved !\n");
+    if (U1RXREG == '1') 
+    {
+        Lib_Temp_ADC_Alimente_Capteur_Temperature(ON); // power on Temp cpt
+        Lib_Temp_ADC_Activation_Alim(ON); // power on the ADC
+        Lib_Temp_ADC_Start_Conversion_Automatique();
+        printf("ADC launched\n\r");
+        while (Lib_Temp_ADC_Attend_Fin_Conversion() == 0){}
+        if(Lib_Temp_ADC_Attend_Fin_Conversion == -1){printf("error");}
+        else{printf("%d", Lib_Temp_ADC_Resultat_Conversion_Somme_des_8_derniers_Echantillons());}  
+    }
     IFS0bits.U1RXIF                 = 0;            // Init du bit de reception
 }
 //------------------------------------------------------------------------------
@@ -35,4 +44,5 @@ void UART_Init(void){
     Lib_Temp_UART_Config(1, 4000000, 115200); // config UART
     Lib_Temp_UART_Activation_Interruption_RX(ON, 7); // enable interrupt on RX
     Lib_Temp_UART_Activation_Interruption_TX(ON, 7); // enable interrupt on TX
+    printf("Enter 1 to se the ADC value\n\r");
 }

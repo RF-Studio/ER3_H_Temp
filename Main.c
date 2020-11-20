@@ -15,6 +15,8 @@
 int main(void){
     Main_Init();
     printf("test");
+    Lib_Temp_ADC_Start_Conversion_Automatique();
+    
     while(1){
     }
     return 0;
@@ -23,6 +25,8 @@ int main(void){
 void Main_Init(void){
     HORLOGE_Init();
     UART_Init();
+    ADC_Init();
+    RTCC_Init();
     /*
      * CPU Init
      */
