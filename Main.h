@@ -25,6 +25,7 @@
     #include "../Sources/Lib_Temp_PIC24FJ256GA702_V2-0.h"
 
     void Main_Init(void);
+    int Mesure(void);
 
 #endif	/* MAIN_H */
 
