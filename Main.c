@@ -14,10 +14,9 @@
  *----------------------------------------------------------------------------*/
 int main(void){
     Main_Init();
-    printf("test");
-    Lib_Temp_ADC_Start_Conversion_Automatique();
-    
+    printf("\n\n\rEnter 1 to see date and temp :\n\r");
     while(1){
+        
     }
     return 0;
 }
@@ -25,13 +24,17 @@ int main(void){
 void Main_Init(void){
     HORLOGE_Init();
     UART_Init();
+    printf("UART UP\n\r");
     ADC_Init();
+    printf("ADC up\n\r");
     RTCC_Init();
+    printf("RTCC up\n\r");
     /*
      * CPU Init
      */
-    Lib_Temp_CPU_Alimentation_Tous_Les_Modules(ON);
+    Lib_Temp_CPU_Activation_Horloge_Tous_Les_Modules(ON);
     Lib_Temp_CPU_Gestion_Low_Power_Sleep_Mode(CPU_LOW_POWER_MODE_RETENTION_SLEEP);
     Lib_Temp_CPU_Activation_Interruption(ON, 2);
-    
+    printf("CPU up\n\r");
 }
+

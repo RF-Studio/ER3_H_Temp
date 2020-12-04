@@ -15,6 +15,7 @@
     #endif
 
     void UART_Init(void);
+    int Mesure(void);
 
 #endif
 
